@@ -1,0 +1,64 @@
+================================================================================
+   Please report corrections and comments to Farid Parpia (parpia@us.ibm.com)
+                         Last revised 08 December 2005
+================================================================================
+The application
+	test_all_pairs
+is a simple MPI program written in C.  It is intended to measure
+	zero-byte latency
+	asymptotic unidirectional bandwidth
+	asymptotic bidirectional bandwidth
+for every pair of hosts in a network.  The message length that is used to
+estimate the asymptotic bandwidths is currently
+	67108864 * 8 = 512 MBytes
+	33554432 * 8 = 256 MBytes
+and is intended for systems equipped with a Federation interconnect.  The
+message length can be modified by suitably editing the line
+	#define L_MESSAGE_BW  67108864
+in
+	test_all_pairs.c
+The program prints out the resolution of the timer that it uses.  The product of
+twice the value of macro
+	N_EXCHANGE_L
+(see the source file) and the measured latency should be much larger than this
+resolution for an accurate latency measurement; again, current settings are
+intended for systems equipped with a Federation interconnect.
+================================================================================
+To use the package on an AIX cluster, build the executable with
+	make clean; make
+and then execute it with one MPI task per host.  Two scripts are provided to
+facilitate this:
+	runjob.sh  (Korn shellscript)
+	runjob.ll  (LoadLeveler job-control file)
+If using the Korn shellscript, it will likely be necessary to edit the value of
+	MP_PROCS
+and suitably modify the associated file
+	host.list
+If using the LoadLeveler job-control file, it will likely be necessary to modify
+the value assigned to the keywords
+	# @ node
+	# @ class
+	# @ initialdir
+To obtain the best performance on a Federation-equipped cluster, both
+technical large pages and bulk transfer should be enabled.
+Each switch plane may be tested individually by using
+	sn_single
+in place of
+	sn_all
+and executing either script twice.  It is important that
+	MP_INFOLEVEL
+be assigned a value of 2 or more [so that the link identifier (sn0 or sn1) for
+the plane is printed to stderr] and that the runs are actually consecutive [if
+not the same plane may be used both times].
+Performance anomalies are usually obvious.  When they are not, the script
+	analyze.awk
+may be of help.  It is vital to *not* use
+	MP_LABELIO=yes
+in either of
+	runjob.sh
+	runjob.ll
+if you intend to use the awk script.  To analyze the results, issue
+	awk -f analyze.awk *.out
+The results may be ordered in different ways by editing the awk script itself:
+for further details, please read through the comments in the script.
+================================================================================

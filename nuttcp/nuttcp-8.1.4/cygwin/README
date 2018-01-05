@@ -1,0 +1,6 @@
+The cygwin library which is included in the zip'd binary distribution for
+windows is covered by the Lesser GNU Public License v3.  As such, included here are
+the original sources to libcygwin as well as a copy of the GPL.
+
+nuttcp itself is OpenSource(tm), and is licensed under the GPL Version 2
+

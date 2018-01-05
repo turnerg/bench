@@ -1,0 +1,19 @@
+#!/bin/bash -l
+#PBS -l nodes=16:ppn=1:goodib
+#PBS -l walltime=01:00:00
+#PBS -j oe
+#PBS -k o
+#PBS -m abe
+
+cd $PBS_O_WORKDIR
+pwd
+
+ntasks=`cat $PBS_NODEFILE | wc -l`
+echo Ntasks=$ntasks
+
+cat $PBS_NODEFILE
+echo 
+
+which mpiexec
+mpiexec -np $ntasks -machinefile $PBS_NODEFILE ./test_all_pairs
+
