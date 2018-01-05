@@ -24,6 +24,10 @@ Simple MPI tests; e.g. hello world,
 <a href="http://nuttcp.net/nuttcp/">nuttcp</a> is a network benchmarking tool similar to iperf2/iperf3.
 Further documentation available on <a href="https://fasterdata.es.net/performance-testing/network-troubleshooting-tools/nuttcp/">ESnet's Faster Data</a> site.
 
+### iperf3
+
+Source is not include as iperf3 is usually available via the OS distribution.
+
 ### sysbench 
 
 <a href="https://github.com/akopytov/sysbench">sysbench</a> is a scriptable multi-threaded benchmark for creating arbitrarily complex workloads 
