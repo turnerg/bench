@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# sync; echo 3 > /proc/sys/vm/drop_caches
-sudo ~/bin/sync-fs.sh
+sudo ../bin/sync-fs.sh
 
 HN=`hostname -s`
 FN="/data/wrangler/turnerg/TEST-FILE-${HN}"
@@ -15,7 +14,7 @@ for trials in `seq 1 $ntrials` ; do
   #for cnt in 1024 2048 4096 8192 16384 32768 65536 131072 ; do
 
     rm -f $FN
-    sudo ~/bin/sync-fs.sh
+    sudo ../bin/sync-fs.sh
     et=`/usr/bin/time dd if=/dev/zero of=$FN  bs=$bs count=$cnt oflag=direct 2>&1`
     et1=`echo $et | grep user | awk '{print $18}' - | sed 's/elapsed//'| awk -F : '{print $1*60+$2}' -`
     mBps2=`echo $et | grep MB | awk '{print $14,$15}' -`

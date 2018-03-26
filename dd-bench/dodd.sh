@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# sync; echo 3 > /proc/sys/vm/drop_caches
-sudo ~/bin/sync-fs.sh
+sudo ../bin/sync-fs.sh
 
 HN=`hostname -s`
 FN="/data/wrangler/turnerg/TEST-FILE-${HN}"
