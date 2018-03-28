@@ -1,7 +1,8 @@
 #/bin/bash 
 
-headers='^StarDGEMM_Gflops= 
-^SingleDGEMM_Gflop= 
+headers='^HPL_Tflops=
+^StarDGEMM_Gflops= 
+^SingleDGEMM_Gflops= 
 ^PTRANS_GBs= 
 ^StarRandomAccess_LCG_GUPs= 
 ^SingleRandomAccess_LCG_GUPs= 
