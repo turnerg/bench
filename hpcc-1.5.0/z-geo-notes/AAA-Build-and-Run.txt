@@ -1,0 +1,19 @@
+# move to here
+cd ~/bench/hpcc-1.5.0
+
+# -- build fftw2x interface
+cp -R /opt/intel/compilers_and_libraries/linux/mkl/interfaces/fftw2x_cdft .
+cd fftw2x_cdft
+make libintel64 PRECISION=MKL_DOUBLE mpi=intelmpi compiler=intel INSTALL_DIR=../lib
+cd ..
+
+# build hpcc
+make all arch=Linux.COS7.intel
+cp ./z-geo-notes/hpccinf-jetstream.txt ./hpccinf.txt
+
+# run hpcc    should take about 17 minutes
+nohup date ; time mpirun -n 24 -ppn 24 ./hpcc ; date &
+
+# if ya' want
+mkdir old
+mv hpccoutf.txt ./old/hpccoutf.`date "+%Y%m%d%H%M%S"`

@@ -1,9 +1,0 @@
-
-# echo 0 > /sys/kernel/debug/x86/pti_enabled
-# echo 0 > /sys/kernel/debug/x86/ibpb_enabled
-# echo 0 > /sys/kernel/debug/x86/ibrs_enabled
-
-as documented at 
-https://access.redhat.com/articles/3311301
-Controlling the Performance Impact of Microcode and Security Patches for CVE-2017-5754 CVE-2017-5715 and CVE-2017-5753 using Red Hat Enterprise Linux Tunables
-
