@@ -1,4 +1,5 @@
 # useful for RHEL OpenMPI
+# install with yum -y install openmpi openmpi-devel
 
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
