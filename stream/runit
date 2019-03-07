@@ -1,0 +1,35 @@
+#!/bin/bash
+
+export NTHREADS=$1
+rm -f core*
+rm -f job
+
+#--------------------------------------
+# set up PBS script
+#--------------------------------------
+
+
+cat << EOF >> job 
+#!/bin/csh
+#PBS -l walltime=00:15:00
+#PBS -l mppwidth=1
+#PBS -l mppdepth=$NTHREADS
+#PBS -q debug
+#PBS -N stream
+#PBS -j oe
+#PBS -o job.out
+
+cd \$PBS_O_WORKDIR
+
+setenv OMP_NUM_THREADS $NTHREADS
+aprun -n1  -d $NTHREADS ./stream_c.exe 
+
+EOF
+
+
+
+#--------------------------------------
+# launch
+#--------------------------------------
+
+qsub job
