@@ -1,9 +1,15 @@
 Compiling on Linux
 
+On IU's Cray BigRed3, pick your compiler
+
+    module load openmpi/intel/4.0.2 
+    module load openmpi/gnu/4.0.1
+
+
 mpicc -o b_eff -D MEMORY_PER_PROCESSOR=NNN b_eff.c -lm
 
 where NNN is a number like 128, 256, 512, 1024 
-Units are MBytes
+Units are MiBytes; i.e. 1024*1024
 
 References:
 	https://fs.hlrs.de/projects/par/mpi/b_eff/
