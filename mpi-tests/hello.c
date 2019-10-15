@@ -1,3 +1,5 @@
+/* mpicc -o hello hello.c */
+ 
 #include <stdio.h>
 #include "mpi.h"
 

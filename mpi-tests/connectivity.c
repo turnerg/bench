@@ -1,9 +1,7 @@
 /*
- * Copyright (c) 2007      Sun Microsystems, Inc.  All rights reserved.
- */
-
-/*
  * Test the connectivity between all processes.
+ * mpicc -c connectivity connectivity.c
+ * mpirun connectivity -v
  */
 
 #include <errno.h>
