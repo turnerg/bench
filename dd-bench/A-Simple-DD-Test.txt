@@ -1,0 +1,4 @@
+/usr/bin/sync
+echo 3 > /proc/sys/vm/drop_caches
+dd if=/dev/zero of=TEST_OUTPUT_FILE bs=1M count=1024 oflag=direct
+
